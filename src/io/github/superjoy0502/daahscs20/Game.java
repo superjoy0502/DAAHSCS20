@@ -7,6 +7,7 @@ public class Game {
     Scanner scanner = new Scanner(System.in);
     String userName;
     String cmd;
+    int score = 0;
 
     void Initialize() {
 
@@ -53,8 +54,12 @@ public class Game {
 
         Clear();
         System.out.println("Welcome to the Game, " + userName + "!" +
+                "Your current score is: " + score +
                 "\nPlease select an option:" +
-                "\n\t* Rock Paper Scissors Game (RPS)" +
+                "\n\t|| Play a Game:" +
+                "\n\t\t* Rock Paper Scissors Game (RPS)" +
+                "\n\t|| Some Fun Stuffs" +
+                "\n\t* Roll a Dice (RaD)" +
                 "\n\t* Quit (Quit)");
         System.out.print(">> ");
 
@@ -67,6 +72,10 @@ public class Game {
                 RPS();
                 break;
 
+            }
+            else if (cmd.equalsIgnoreCase("rad")) {
+                RAD();
+                break;
             }
             else if (cmd.equalsIgnoreCase("quit")) {
 
@@ -140,10 +149,12 @@ public class Game {
                         || move.equalsIgnoreCase("r") && CM.equalsIgnoreCase("s")
                         || move.equalsIgnoreCase("p") && CM.equalsIgnoreCase("r")){
 
+                    score += 2;
                     System.out.println("Game won!");
 
                 } else {
 
+                    score -= 1;
                     System.out.println("Game lost :(");
 
                 }
@@ -161,6 +172,12 @@ public class Game {
             }
 
         }
+
+    }
+
+    void RAD() {
+
+
 
     }
 
