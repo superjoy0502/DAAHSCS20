@@ -1,6 +1,7 @@
 package io.github.superjoy0502.daahscs20;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Game {
 
@@ -8,6 +9,58 @@ public class Game {
     String userName;
     String cmd;
     int score = 0;
+
+    //region DICE
+
+    final String DICE_ONE = """
+            -----
+            |   |
+            | o |
+            |   |
+            -----
+            """;
+
+    final String DICE_TWO = """
+            -----
+            |o  |
+            |   |
+            |  o|
+            -----
+            """;
+
+    final String DICE_THREE = """
+            -----
+            |o  |
+            | o |
+            |  o|
+            -----
+            """;
+
+    final String DICE_FOUR = """
+            -----
+            |o o|
+            |   |
+            |o o|
+            -----
+            """;
+
+    final String DICE_FIVE = """
+            -----
+            |o o|
+            | o |
+            |o o|
+            -----
+            """;
+
+    final String DICE_SIX = """
+            -----
+            |o o|
+            |o o|
+            |o o|
+            -----
+            """;
+
+    //endregion
 
     void Initialize() {
 
@@ -53,14 +106,17 @@ public class Game {
     void Menu() {
 
         Clear();
-        System.out.println("Welcome to the Game, " + userName + "!" +
-                "Your current score is: " + score +
-                "\nPlease select an option:" +
-                "\n\t|| Play a Game:" +
-                "\n\t\t* Rock Paper Scissors Game (RPS)" +
-                "\n\t|| Some Fun Stuffs" +
-                "\n\t* Roll a Dice (RaD)" +
-                "\n\t* Quit (Quit)");
+        System.out.printf("""
+                        Welcome to the Game, %s! Your current score is: %d
+                        Please select an option:
+                        \t|| Play a Game:
+                        \t\t* Rock Paper Scissors Game (RPS)
+                        \t|| Some Fun Stuffs:
+                        \t\t* Roll a Dice (RaD)
+                        \t* Quit (Quit)%n
+                        """,
+                userName,
+                score);
         System.out.print(">> ");
 
         cmd = scanner.nextLine();
@@ -177,7 +233,47 @@ public class Game {
 
     void RAD() {
 
+        try{
 
+            for (int i = 0; i < 2; i++) {
+
+                System.out.println("Rolling.");
+                TimeUnit.SECONDS.sleep(1);
+                Clear();
+                System.out.println("Rolling..");
+                TimeUnit.SECONDS.sleep(1);
+                Clear();
+                System.out.println("Rolling...");
+                TimeUnit.SECONDS.sleep(1);
+                Clear();
+
+            }
+
+            int x = (int) (Math.random() * 6) + 1;
+
+            String printDice = switch (x) {
+
+                case 1 -> DICE_ONE;
+                case 2 -> DICE_TWO;
+                case 3 -> DICE_THREE;
+                case 4 -> DICE_FOUR;
+                case 5 -> DICE_FIVE;
+                case 6 -> DICE_SIX;
+                default -> throw new IndexOutOfBoundsException("Random number is not 1 ~ 6! (This should not happen)");
+
+            };
+
+            System.out.println(printDice);
+
+            System.out.print("To go back to menu, press any Enter >> ");
+
+            cmd = scanner.nextLine();
+            Menu();
+
+        }
+        catch (Exception e){
+            System.out.println("ERROR");
+        }
 
     }
 
