@@ -11,9 +11,9 @@ public class Main {
                 Hello, user! Which project do you want to access?
                 \t1. Rock Paper Scissors Project
                 \t2. Parallel Arrays Project
-                >>
                 """
         );
+        System.out.print(">> ");
 
         Scanner scanner = new Scanner(System.in);
         int cmd = 0;
@@ -21,16 +21,17 @@ public class Main {
         cmd = scanner.nextInt();
 
         switch (cmd) {
-            case 1:
+            case 1 -> {
                 Game game = new Game();
                 game.Initialize();
-                break;
-            case 2:
-
-                break;
-            default:
-
-                break;
+            }
+            case 2 -> {
+                ParallelArray parallelArray = new ParallelArray();
+                parallelArray.Initialize();
+            }
+            default -> {
+                System.out.println("Please choose a proper option.");
+            }
         }
 
     }
